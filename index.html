@@ -686,7 +686,7 @@
     function filterCourses(query) {
       const term = query.trim().toLowerCase();
       if (!term) return courses;
-      return courses.filter(course => course.title.toLowerCase().startsWith(term));
+      return courses.filter(course => course.title.toLowerCase().includes(term));
     }
 
     searchForm.addEventListener("submit", event => {
@@ -708,7 +708,7 @@
         return;
       }
 
-      const updatedFavorites = [...favorites, course];
+      favorites = [...favorites, course];
       renderFavorites();
       showToast(`${course.title} added to favorites`);
     }
@@ -764,7 +764,7 @@
     }
 
     function isValidEmail(email) {
-      const emailPattern = /^[^\s@]*@?[^\s@]*\.?[^\s@]*$/;
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailPattern.test(email);
     }
 
